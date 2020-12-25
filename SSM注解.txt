@@ -1,0 +1,73 @@
+﻿1、创建bean对象
+在创建对象的类上面使用注解就可以实现。
+创建对象有四个注解。
+
+@Component  通用注解
+@Controller 控制层注解
+@Service 业务层注解  
+@Repository 持久层注解
+作用：用于把对象 存入spring容器中
+​ 属性：value：用于指定bean的id。当我们不写时，它的默认值是当前类名，且首字母改小写。
+2、注入数据
+1）@Autowired:
+@Inject注解用法和@Autowired用法一致，但是需要额外导包。
+作用：自动按照类型注入。只要容器中有唯一的一个bean对象类型和要注入的变量类型匹配，就可以注入成功
+出现位置：
+​ 可以是变量上，也可以是方法上
+2）@Qualifier:
+@Named等价于@Qualifier
+作用：在按照类中注入的基础之上再按照名称注入。它在给类成员注入时不能单独使用。但是在给方法参数注入时可以
+​ 属性：
+​ value：用于指定注入bean的id。
+在给类成员注入使不能单独使用，要加上@ Autowired
+3）@Resource
+作用：直接按照bean的id注入。它可以独立使用
+​ 属性：
+​ name：用于指定bean的id。
+4）@Value
+​ 作用：用于注入基本类型和String类型的数据
+value：用于指定数据的值。它可以使用spring中SpEL(也就是spring的el表达式）
+​ SpEL的写法：${表达式}
+3、改变bean作用范围
+1）@Scope
+作用：用于指定bean的作用范围
+属性：
+value：指定范围的取值。常用取值：singleton prototype
+4、和生命周期相关（了解）
+1）@PreDestroy	销毁
+2）@PostConstruct	初始化
+@Param
+第一种：方法有多个参数
+第二种：方法参数要取别名
+第三种：XML 中的 SQL 使用了 $ 
+@RequestParam接受请求参数值
+变量名称和参数名称不同时使用
+
+@ModelAttribute向页面传值
+@ModelAttribute数据会利用HttpServletRequest的Attribute传递到JSP页面中。
+
+@RequestMapping
+RequestMapping是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。
+@ResponseBody
+需要引入Jackson开发包
+作用：可以自动将它所修饰的方法的返回值转换为json格式，从而不需要人为的去转换
+@RestController
+该注解为一个组合注解，相当于@Controller和@ResponseBody的组合，注解在类上，意味着，该Controller的所有方法都默认加上@ResponseBody。
+@PathVariable：获取URL地址中的数据，常用来实现Restful风格的API设计。
+
+在Mybatis框架中的注解
+@Select
+@Insert
+@Update
+@Delete
+@Select(“sql”)
+在Mybatis框架中，基于注解配置时，加在持久层接口的方法前
+AOP注解
+@Aspect:声明方面组件
+@Before:用于声明前置通知
+@After:用于声明最终通知
+@AfterReturning:用于声明后置通知
+@Around:用于环绕通知
+@AfterThrowing:用于声明异常通知
+事务注解：
+@Transactional
